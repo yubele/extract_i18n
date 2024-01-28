@@ -44,7 +44,7 @@ module ExtractI18n
       if adapter_class
         adapter = adapter_class.new(
           file_key: key,
-          on_ask: ->(change) { @options[:force] ? ask_one_change_yes : ask_one_change?(change) },
+          on_ask: ->(change) { @options[:force] ? ask_one_change_yes(change) : ask_one_change?(change) },
           options: @options,
         )
         output = adapter.run(original_content)
@@ -60,11 +60,11 @@ module ExtractI18n
       if PROMPT.no?("replace line ?")
         false
       else
-        ask_one_change_yes
+        ask_one_change_yes(change)
       end
     end
 
-    def ask_one_change_yes
+    def ask_one_change_yes(change)
         @i18n_changes[change.key] = change.i18n_string
         true
     end
