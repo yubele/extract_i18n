@@ -48,7 +48,7 @@ module ExtractI18n
         end
       end.parse!
 
-      @options[:write_to] ||= "config/locales/unsorted.#{@options[:locale]}.yml"
+      @options[:write_to] ||= "config/locales/unsorted.#{@options[:locale] || 'en'}.yml"
       @options[:locale] ||= 'en'
       @files = ARGV
     end
