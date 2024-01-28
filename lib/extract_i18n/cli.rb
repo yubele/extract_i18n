@@ -38,6 +38,10 @@ module ExtractI18n
           @options[:write_to] = f || "config/locales/unsorted.#{@options[:locale]}"
         end
 
+        opts.on('-f', '--force', 'Do not prompt when replacing locale') do
+          @options[:force] = true
+        end
+        
         opts.on('-h', '--help', 'Prints this help') do
           puts opts
           exit 1
